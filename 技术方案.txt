@@ -5,7 +5,20 @@
 ①url递归方案 ②搜索框方案
     👇        👇
 ----------------------- 数据以 html为核心
-③ 减少数据 ：MinerU 解析 PDF ,以markdown形式输出 
+③ 减少数据 ：
+    [1]MinerU 解析 PDF文件-->markdown形式输出
+    [2]trafilatura /readability-lxml 解析HTML -->markdown
+        import trafilatura
+        main_text = trafilatura.extract(html)
+    
+        from readability import Document
+        doc = Document(html)
+        clean_html = doc.summary()
+    
+    
+        from markdownify import markdownify as md
+        markdown = md(clean_html)
+
           👇
 -------------------------数据以 markdown 为核心
 ④ 数据过滤： 字符串检索 --> 大模型 数据总结
